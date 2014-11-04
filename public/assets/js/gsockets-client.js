@@ -1,15 +1,3 @@
-//=============================================================================================//
-// event                    required params           description                             //
-//===========================================================================================//
-// gsocket_announce         listen, data              emit to all sockets
-// gsocket_bounce           listen, data              emit to this socket
-// gsocket_send             socketID, listen, data    emit to specific socket
-// gsocket_broadcast        listen, data              emit to every socket except this one
-// gsocket_roomAnnounce     roomName, listen, data    emit to room
-// gsocket_roomBroadcast    roomName, listen, data    emit to everyone in room except you
-// gsocket_join             roomName, listen          join room and emit to this socket
-// gsocket_leave            roomName, listen          leave room and emit to this socket     
-
 var gSocket = {
 	socket: {},
 	connect: function(ip, port){
