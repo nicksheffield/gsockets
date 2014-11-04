@@ -2,7 +2,7 @@ var gSocket = {
 	socket: {},
 	connect: function(ip, port){
 		ip = ip || location.origin;
-		port = port ? ':'+port : '';
+		port = port ? ':' + port : '';
 
 		this.socket = io.connect(ip + port);
 
