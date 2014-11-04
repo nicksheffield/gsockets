@@ -1,6 +1,6 @@
 # General Sockets
 
-A group of general events for send and receiving json objects through socket.io
+A group of general events for sending and receiving json objects through socket.io
 
 ---
 
