@@ -109,14 +109,18 @@ Emit to everyone in room except you
 
 ---
 
-###gSocket.join(roomName)
+###gSocket.join(roomName, listen)
 **roomName** The name of the room to join
+
+**listen** The name of the event that will be sent to another client
 
 Join room and emit to this socket
 
 ---
 
-###gSocket.leave(roomName)
+###gSocket.leave(roomName, listen)
 **roomName** The name of the room to leave
+
+**listen** The name of the event that will be sent to another client
 
 Leave room and emit to this socket
