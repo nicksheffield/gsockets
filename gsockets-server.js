@@ -88,7 +88,13 @@
 		});
 
 		socket.on('gsocket_send', function(body){
-			io.to(body.socketID).emit(body.listen, body.data);
+			if(body.socketID instanceof Array){
+				body.socketID.forEach(function(id){
+					io.to(id).emit(body.listen, body.data);
+				});
+			}else{
+				io.to(body.socketID).emit(body.listen, body.data);
+			}
 		});
 
 		socket.on('gsocket_broadcast', function(body){
