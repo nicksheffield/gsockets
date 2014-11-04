@@ -1,0 +1,11 @@
+{
+  "name": "gsockets",
+  "version": "0.0.1",
+  "description": "General sockets interface",
+  "main": "gsockets-server.js",
+  "author": "Nick Sheffield",
+  "dependencies": {
+    "express": "~4.9.7",
+    "socket.io": "~1.2.0"
+  }
+}

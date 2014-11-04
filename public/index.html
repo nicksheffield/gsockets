@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>General Sockets</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<style>
+
+		.input{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: 3em;
+		}
+
+		#form{
+			display: flex;
+			justify-content: space-between;
+		}
+
+		#form button{
+			flex: 1;
+			min-width: 100px;
+			margin-left: 1em;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<h1>gSocket chat</h1>
+
+		<div class="messages"></div>
+	</div>
+
+	<div class="input">
+		<form id="form">
+			<input type="text" class="form-control" id="input" placeholder="What's up">
+			<button class="btn btn-primary">Send</button>
+		</form>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/assets/js/gsockets-client.js"></script>
+	<script src="/assets/js/script.js"></script>
+</body>
+</html>
