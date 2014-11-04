@@ -1,11 +1,11 @@
 module.exports = {
-	bind: function(express){
+	bind: function(express, server){
+
+		var io = require('socket.io').listen(server, {log: false});
 
 		express.get('/gsockets/client.js', function(req, res){
 			res.sendFile(__dirname + '/client.js');
 		})
-
-		var io = require('socket.io').listen(server, {log: false}),
 
 		io.sockets.on('connection', function(socket){
 

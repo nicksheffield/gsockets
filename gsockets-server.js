@@ -6,8 +6,7 @@
 		express          = require('express'),
 		app              = express(),
 		server           = require('http').createServer(app),
-		io               = require('socket.io').listen(server, {log: false}),
-		gsockets         = require('./gsockets/gsockets.js').bind(app);
+		gsockets         = require('./gsockets/gsockets.js').bind(app, server);
 
 
 
