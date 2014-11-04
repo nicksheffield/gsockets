@@ -41,44 +41,82 @@ Send an ordinary socket.io event
 ---
 
 ###gSocket.on(event, callback)
+**event** The name of the event to listen for
+
+**callback** The function to run when this event is fired
+
 Run the callback when an event is emited from the server
 
 ---
 
 ###gSocket.announce(listen, data)
-Emit data to all sockets
+**listen** The name of the event that will be sent to another client
+
+**data** (optional) JSON object containing data
+
+Emit to all sockets
 
 ---
 
 ###gSocket.bounce(listen, data)
-Emit data to this socket
+**listen** The name of the event that will be sent to another client
+
+**data** (optional) JSON object containing data
+
+Emit to this socket
 
 ---
 
 ###gSocket.send(socketID, listen, data)
-Emit data to specific socket
+**socketID** The socket id to send this data to
+
+**listen** The name of the event that will be sent to another client
+
+**data** (optional) JSON object containing data
+
+Emit to specific socket
 
 ---
 
 ###gSocket.broadcast(listen, data)
-Emit data to every socket except this one
+**listen** The name of the event that will be sent to another client
+
+**data** (optional) JSON object containing data
+
+Emit to every socket except this one
 
 ---
 
 ###gSocket.roomAnnounce(roomName, listen, data)
-Emit data to room
+**roomName** The name of the room to emit to
+
+**listen** The name of the event that will be sent to another client
+
+**data** (optional) JSON object containing data
+
+Emit to room
 
 ---
 
 ###gSocket.roomBroadcast(roomName, listen, data)
-Emit data to everyone in room except you
+**roomName** The name of the room to emit to
+
+**listen** The name of the event that will be sent to another client
+
+**data** (optional) JSON object containing data
+
+Emit to everyone in room except you
 
 ---
 
 ###gSocket.join(roomName)
+**roomName** The name of the room to join
+
 Join room and emit to this socket
 
 ---
 
 ###gSocket.leave(roomName)
-Leave room and emit to this socket   
+**roomName** The name of the room to leave
+
+Leave room and emit to this socket
