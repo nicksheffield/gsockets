@@ -1,4 +1,4 @@
-var gSocket = {
+var gsockets = {
 	socket: {},
 	connect: function(ip, port){
 		ip = ip || location.origin;
