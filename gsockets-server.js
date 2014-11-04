@@ -88,7 +88,7 @@
 		});
 
 		socket.on('gsocket_send', function(body){
-			io.sockets.socket(body.socketID).emit(body.listen, body.data);
+			io.to(body.socketID).emit(body.listen, body.data);
 		});
 
 		socket.on('gsocket_broadcast', function(body){
