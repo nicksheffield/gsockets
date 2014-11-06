@@ -2,11 +2,7 @@
 
 A group of general events for sending and receiving json objects through socket.io
 
-https://www.npmjs.org/package/gsockets
-
----
-
-Basic setup
+##Setup
 
 __NPM__
 
@@ -16,15 +12,19 @@ $ npm install gsockets
 
 __Server__
 
+Assume `io` is your socket.io object, and `app` is your express server
+
 ```javascript
+var gsockets = require('gsockets');
+
+// to enable debug logs, add this line
+gsockets.config({ debug: true});
+
 // express middleware to host the client.js file at /gsockets/client.js
-app.middleware(gsockets.client);
+app.use(gsockets.client);
 
-// io is your socket.io object.
 io.on('connect', function(socket){
-
 	gsockets.bind(io, socket);
-	
 });
 ```
 
@@ -40,115 +40,135 @@ __Client__
 
 	gsockets.on('user_connected', function(){
 		console.log('A user has connected');
-	})
+	});
 </script>
 ```
 
----
 
-##Clientside API
+##Server API
 
----
+####`gsockets.client(req, res, next)`
 
-###gsockets.connect(ip, port)
-**ip** (optional) The ip of the server if different from the current page
+Serve the client.js file at the /gsockets/client.js url
 
-**port** (optional) The port of the server
+ * usage: `app.use(gsockets.client);`
+
+
+
+####`gsockets.config(obj)`
+
+Modify configuration settings of gsockets. The only option currently available is debug.
+
+ * usage: `gsockets.config({ debug: true});`
+
+
+
+####`gsockets.bind(io, socket)`
+
+Add the gsockets events to your socket.io server
+
+
+
+##Client API
+
+
+
+####`gsockets.connect(ip, port)`
 
 Create the connection to the socket.io server
+ 
+ * _ip_ (optional) The ip of the server if different from the current page
+ * _port_ (optional) The port of the server
 
----
 
-###gsockets.emit(event, [data])
-**event** The name of the event for the server to respond to
 
-**data** (optional) JSON object containing data
+####`gsockets.emit(event, [data])`
 
 Send an ordinary socket.io event
 
----
+ * _event_ The name of the event for the server to respond to
+ * _data_ (optional) Data object
 
-###gsockets.on(event, callback)
-**event** The name of the event to listen for
 
-**callback** The function to run when this event is fired
+
+####`gsockets.on(event, callback)`
 
 Run the callback when an event is emited from the server
 
----
+ * _event_ The name of the event to listen for
+ * _callback_ The function to run when this event is fired
 
-###gsockets.announce(event, [data])
-**event** The name of the event that will be sent to another client
 
-**data** (optional) JSON object containing data
 
-Emit to all sockets
+####`gsockets.announce(event, [data])`
 
----
+Emit event to all sockets
 
-###gsockets.bounce(event, [data])
-**event** The name of the event that will be sent to another client
+ * _event_ The name of the event that will be sent to another client
+ * _data_ (optional) Data object
 
-**data** (optional) JSON object containing data
 
-Emit to this socket
 
----
+####`gsockets.bounce(event, [data])`
 
-###gsockets.send(socketID, event, [data])
-**socketID** The socket id to send this data to
+Emit event to this socket
 
-**event** The name of the event that will be sent to another client
+ * _event_ The name of the event that will be sent to another client
+ * _data_ (optional) Data object
 
-**data** (optional) JSON object containing data
 
-Emit to specific socket
 
----
+####`gsockets.send(socketID, event, [data])`
 
-###gsockets.broadcast(event, [data])
-**event** The name of the event that will be sent to another client
+Emit event to specific socket
 
-**data** (optional) JSON object containing data
+ * _socketID_ The socket id to send this data to
+ * _event_ The name of the event that will be sent to another client
+ * _data_ (optional) Data object
 
-Emit to every socket except this one
 
----
 
-###gsockets.roomAnnounce(roomName, event, [data])
-**roomName** The name of the room to emit to
+####`gsockets.broadcast(event, [data])`
 
-**event** The name of the event that will be sent to another client
+Emit event to every socket except this one
 
-**data** (optional) JSON object containing data
+ * _event_ The name of the event that will be sent to another client
+ * _data_ (optional) Data object
 
-Emit to room
 
----
 
-###gsockets.roomBroadcast(roomName, event, [data])
-**roomName** The name of the room to emit to
+####`gsockets.roomAnnounce(roomName, event, [data])`
 
-**event** The name of the event that will be sent to another client
+Emit event to room
 
-**data** (optional) JSON object containing data
+ * _roomName_ The name of the room to emit to
+ * _event_ The name of the event that will be sent to another client
+ * _data_ (optional) Data object
 
-Emit to everyone in room except you
 
----
 
-###gsockets.join(roomName, event)
-**roomName** The name of the room to join
+####`gsockets.roomBroadcast(roomName, event, [data])`
 
-**event** The name of the event that will be sent to another client
+Emit event to everyone in room except you
 
-Join room and emit to this socket
+ * _roomName_ The name of the room to emit to
+ * _event_ The name of the event that will be sent to another client
+ * _data_ (optional) Data object
 
----
 
-###gsockets.leave(roomName, event)
-**roomName** The name of the room to leave
 
-**event** The name of the event that will be sent to another client
+####`gsockets.join(roomName, event)`
 
-Leave room and emit to this socket
+Join room and emit an event to this socket
+
+ * _roomName_ The name of the room to join
+ * _event_ The name of the event that will be sent to another client
+
+
+
+####`gsockets.leave(roomName, event)`
+
+Leave room and emit an event to this socket
+
+ * _roomName_ The name of the room to leave
+ * _event_ The name of the event that will be sent to another client
