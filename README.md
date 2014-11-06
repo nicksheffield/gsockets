@@ -2,9 +2,17 @@
 
 A group of general events for sending and receiving json objects through socket.io
 
+https://www.npmjs.org/package/gsockets
+
 ---
 
 Basic setup
+
+__NPM__
+
+```
+$ npm install gsockets
+```
 
 __Server__
 
