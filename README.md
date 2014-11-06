@@ -65,8 +65,8 @@ Run the callback when an event is emited from the server
 
 ---
 
-###gSocket.announce(listen, [data])
-**listen** The name of the event that will be sent to another client
+###gSocket.announce(event, [data])
+**event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
 
@@ -74,8 +74,8 @@ Emit to all sockets
 
 ---
 
-###gSocket.bounce(listen, [data])
-**listen** The name of the event that will be sent to another client
+###gSocket.bounce(event, [data])
+**event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
 
@@ -83,10 +83,10 @@ Emit to this socket
 
 ---
 
-###gSocket.send(socketID, listen, [data])
+###gSocket.send(socketID, event, [data])
 **socketID** The socket id to send this data to
 
-**listen** The name of the event that will be sent to another client
+**event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
 
@@ -94,8 +94,8 @@ Emit to specific socket
 
 ---
 
-###gSocket.broadcast(listen, [data])
-**listen** The name of the event that will be sent to another client
+###gSocket.broadcast(event, [data])
+**event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
 
@@ -103,10 +103,10 @@ Emit to every socket except this one
 
 ---
 
-###gSocket.roomAnnounce(roomName, listen, [data])
+###gSocket.roomAnnounce(roomName, event, [data])
 **roomName** The name of the room to emit to
 
-**listen** The name of the event that will be sent to another client
+**event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
 
@@ -114,10 +114,10 @@ Emit to room
 
 ---
 
-###gSocket.roomBroadcast(roomName, listen, [data])
+###gSocket.roomBroadcast(roomName, event, [data])
 **roomName** The name of the room to emit to
 
-**listen** The name of the event that will be sent to another client
+**event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
 
@@ -125,18 +125,18 @@ Emit to everyone in room except you
 
 ---
 
-###gSocket.join(roomName, listen)
+###gSocket.join(roomName, event)
 **roomName** The name of the room to join
 
-**listen** The name of the event that will be sent to another client
+**event** The name of the event that will be sent to another client
 
 Join room and emit to this socket
 
 ---
 
-###gSocket.leave(roomName, listen)
+###gSocket.leave(roomName, event)
 **roomName** The name of the room to leave
 
-**listen** The name of the event that will be sent to another client
+**event** The name of the event that will be sent to another client
 
 Leave room and emit to this socket
