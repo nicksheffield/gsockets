@@ -24,7 +24,7 @@ __Client__
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
-<script src="/assets/js/gsockets-client.js"></script>
+<script src="/gsockets/client.js"></script>
 <script>
 	gsockets.connect();
 
