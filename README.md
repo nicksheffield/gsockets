@@ -47,7 +47,7 @@ Create the connection to the socket.io server
 
 ---
 
-###gSocket.emit(event, data)
+###gSocket.emit(event, [data])
 **event** The name of the event for the server to respond to
 
 **data** (optional) JSON object containing data
@@ -65,7 +65,7 @@ Run the callback when an event is emited from the server
 
 ---
 
-###gSocket.announce(listen, data)
+###gSocket.announce(listen, [data])
 **listen** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
@@ -74,7 +74,7 @@ Emit to all sockets
 
 ---
 
-###gSocket.bounce(listen, data)
+###gSocket.bounce(listen, [data])
 **listen** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
@@ -83,7 +83,7 @@ Emit to this socket
 
 ---
 
-###gSocket.send(socketID, listen, data)
+###gSocket.send(socketID, listen, [data])
 **socketID** The socket id to send this data to
 
 **listen** The name of the event that will be sent to another client
@@ -94,7 +94,7 @@ Emit to specific socket
 
 ---
 
-###gSocket.broadcast(listen, data)
+###gSocket.broadcast(listen, [data])
 **listen** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
@@ -103,7 +103,7 @@ Emit to every socket except this one
 
 ---
 
-###gSocket.roomAnnounce(roomName, listen, data)
+###gSocket.roomAnnounce(roomName, listen, [data])
 **roomName** The name of the room to emit to
 
 **listen** The name of the event that will be sent to another client
@@ -114,7 +114,7 @@ Emit to room
 
 ---
 
-###gSocket.roomBroadcast(roomName, listen, data)
+###gSocket.roomBroadcast(roomName, listen, [data])
 **roomName** The name of the room to emit to
 
 **listen** The name of the event that will be sent to another client
