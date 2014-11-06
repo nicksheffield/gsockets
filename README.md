@@ -26,11 +26,11 @@ __Client__
 <script src="/socket.io/socket.io.js"></script>
 <script src="/assets/js/gsockets-client.js"></script>
 <script>
-	gSocket.connect();
+	gsockets.connect();
 
-	gSocket.announce('user_connected');
+	gsockets.announce('user_connected');
 
-	gSocket.on('user_connected', function(){
+	gsockets.on('user_connected', function(){
 		console.log('A user has connected');
 	})
 </script>
@@ -38,7 +38,7 @@ __Client__
 
 ---
 
-###gSocket.connect(ip, port)
+###gsockets.connect(ip, port)
 **ip** (optional) The ip of the server if different from the current page
 
 **port** (optional) The port of the server
@@ -47,7 +47,7 @@ Create the connection to the socket.io server
 
 ---
 
-###gSocket.emit(event, [data])
+###gsockets.emit(event, [data])
 **event** The name of the event for the server to respond to
 
 **data** (optional) JSON object containing data
@@ -56,7 +56,7 @@ Send an ordinary socket.io event
 
 ---
 
-###gSocket.on(event, callback)
+###gsockets.on(event, callback)
 **event** The name of the event to listen for
 
 **callback** The function to run when this event is fired
@@ -65,7 +65,7 @@ Run the callback when an event is emited from the server
 
 ---
 
-###gSocket.announce(event, [data])
+###gsockets.announce(event, [data])
 **event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
@@ -74,7 +74,7 @@ Emit to all sockets
 
 ---
 
-###gSocket.bounce(event, [data])
+###gsockets.bounce(event, [data])
 **event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
@@ -83,7 +83,7 @@ Emit to this socket
 
 ---
 
-###gSocket.send(socketID, event, [data])
+###gsockets.send(socketID, event, [data])
 **socketID** The socket id to send this data to
 
 **event** The name of the event that will be sent to another client
@@ -94,7 +94,7 @@ Emit to specific socket
 
 ---
 
-###gSocket.broadcast(event, [data])
+###gsockets.broadcast(event, [data])
 **event** The name of the event that will be sent to another client
 
 **data** (optional) JSON object containing data
@@ -103,7 +103,7 @@ Emit to every socket except this one
 
 ---
 
-###gSocket.roomAnnounce(roomName, event, [data])
+###gsockets.roomAnnounce(roomName, event, [data])
 **roomName** The name of the room to emit to
 
 **event** The name of the event that will be sent to another client
@@ -114,7 +114,7 @@ Emit to room
 
 ---
 
-###gSocket.roomBroadcast(roomName, event, [data])
+###gsockets.roomBroadcast(roomName, event, [data])
 **roomName** The name of the room to emit to
 
 **event** The name of the event that will be sent to another client
@@ -125,7 +125,7 @@ Emit to everyone in room except you
 
 ---
 
-###gSocket.join(roomName, event)
+###gsockets.join(roomName, event)
 **roomName** The name of the room to join
 
 **event** The name of the event that will be sent to another client
@@ -134,7 +134,7 @@ Join room and emit to this socket
 
 ---
 
-###gSocket.leave(roomName, event)
+###gsockets.leave(roomName, event)
 **roomName** The name of the room to leave
 
 **event** The name of the event that will be sent to another client
