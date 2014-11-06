@@ -46,6 +46,10 @@ __Client__
 
 ---
 
+##Clientside API
+
+---
+
 ###gsockets.connect(ip, port)
 **ip** (optional) The ip of the server if different from the current page
 
