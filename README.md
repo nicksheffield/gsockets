@@ -6,6 +6,22 @@ A group of general events for sending and receiving json objects through socket.
 
 Basic setup
 
+__Server__
+
+```javascript
+// express middleware to host the client.js file at /gsockets/client.js
+app.middleware(gsockets.client);
+
+// io is your socket.io object.
+io.on('connect', function(socket){
+
+	gsockets.bind(io, socket);
+	
+});
+```
+
+__Client__
+
 ```html
 <script src="/socket.io/socket.io.js"></script>
 <script src="/assets/js/gsockets-client.js"></script>
