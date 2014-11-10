@@ -8,7 +8,7 @@ var gsockets = {
 
 		this.socket.on('connected', function(data){
 			this.id = data.socketID;
-			console.log('Connected: ' + this.id);
+			console.log('gsockets id: ' + this.id);
 		});
 	},
 	emit: function(event, data){

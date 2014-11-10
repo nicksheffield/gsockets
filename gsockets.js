@@ -44,7 +44,7 @@ module.exports = {
 
 		var gs = this;
 
-		if(gs.log) console.log('Connected: ', socket.id);
+		if(gs.log) console.log(socket.id, '   connect');
 
 		socket.on('gsockets_announce', function(body){
 			io.sockets.emit(body.event, body.data);
