@@ -16,7 +16,7 @@ $ npm install gsockets
 var gsockets = require('gsockets');
 
 // to enable debug logs, add this line
-gsockets.config({ debug: true});
+gsockets.config({ log: true});
 
 // express middleware to host the client.js file at /gsockets/client.js
 app.use(gsockets.client);

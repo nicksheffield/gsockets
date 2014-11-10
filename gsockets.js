@@ -25,6 +25,8 @@ module.exports = {
 
 		if(req.url == '/gsockets/client.js'){
 			res.sendFile(__dirname + '/client.js');
+		}else if(req.url == '/gsockets/client.min.js'){
+			res.sendFile(__dirname + '/client.min.js');
 		}else{
 			next();
 		}
