@@ -1,6 +1,6 @@
 {
   "name": "gsockets",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Series of generic socket events",
   "main": "gsockets.js",
   "dependencies": {
