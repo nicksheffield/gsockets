@@ -29,25 +29,35 @@ module.exports = {
 			next();
 		}
 	},
+	listen: function(port){
+		var io = require('socket.io')(),
+		gs = this;
+
+		io.on('connection', function(socket){
+			gs.bind(io, socket);
+		});
+
+		io.listen(port);
+	},
 	bind: function(io, socket){
 		socket.emit('connected', {socketID: socket.id});
 
-		var gsockets = this;
+		var gs = this;
 
-		if(gsockets.log) console.log('Connected: ', socket.id);
+		if(gs.log) console.log('Connected: ', socket.id);
 
 		socket.on('gsockets_announce', function(body){
 			io.sockets.emit(body.event, body.data);
-			if(gsockets.log) console.log(socket.id, '   announce   ', body)
+			if(gs.log) console.log(socket.id, '   announce   ', body)
 		});
 
 		socket.on('gsockets_bounce', function(body){
 			socket.emit(body.event, body.data);
-			if(gsockets.log) console.log(socket.id, '   bounce   ', body)
+			if(gs.log) console.log(socket.id, '   bounce   ', body)
 		});
 
 		socket.on('gsockets_send', function(body){
-			if(gsockets.log) console.log(socket.id, '   send   ', body)
+			if(gs.log) console.log(socket.id, '   send   ', body)
 			if(body.socketID instanceof Array){
 				body.socketID.forEach(function(id){
 					io.to(id).emit(body.event, body.data);
@@ -58,28 +68,28 @@ module.exports = {
 		});
 
 		socket.on('gsockets_broadcast', function(body){
-			if(gsockets.log) console.log(socket.id, '   broadcast   ', body)
+			if(gs.log) console.log(socket.id, '   broadcast   ', body)
 			socket.broadcast.emit(body.event, body.data);
 		});
 
 		socket.on('gsockets_roomAnnounce', function(body){
-			if(gsockets.log) console.log(socket.id, '   roomAnnounce   ', body)
+			if(gs.log) console.log(socket.id, '   roomAnnounce   ', body)
 			io.sockets.in(body.roomName).emit(body.event, body.data);
 		});
 
 		socket.on('gsockets_roomBroadcast', function(body){
-			if(gsockets.log) console.log(socket.id, '   roomBroadcast   ', body)
+			if(gs.log) console.log(socket.id, '   roomBroadcast   ', body)
 			socket.broadcast.to(body.roomName).emit(body.event, body.data);
 		});
 
 		socket.on('gsockets_join', function(body){
-			if(gsockets.log) console.log(socket.id, '   join   ', body)
+			if(gs.log) console.log(socket.id, '   join   ', body)
 			socket.join(body.roomName);
 			socket.emit(body.event, {roomJoined: body.roomName});
 		});
 
 		socket.on('gsockets_leave', function(body){
-			if(gsockets.log) console.log(socket.id, '   leave   ', body)
+			if(gs.log) console.log(socket.id, '   leave   ', body)
 			socket.leave(body.roomName);
 			socket.emit(body.event, {roomLeft: body.roomName});
 		});

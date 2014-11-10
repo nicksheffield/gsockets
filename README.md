@@ -4,15 +4,13 @@ A group of general events for sending and receiving json objects through socket.
 
 ##Setup
 
-__NPM__
+###NPM
 
 ```
 $ npm install gsockets
 ```
 
-__Server__
-
-Assume `io` is your socket.io object, and `app` is your express server
+###Server
 
 ```javascript
 var gsockets = require('gsockets');
@@ -23,12 +21,24 @@ gsockets.config({ debug: true});
 // express middleware to host the client.js file at /gsockets/client.js
 app.use(gsockets.client);
 
+```
+
+__Existing Socket.IO__
+
+```javascript
 io.on('connect', function(socket){
 	gsockets.bind(io, socket);
 });
 ```
 
-__Client__
+__Standalone__
+
+```javascript
+// choose whatever port number you want to use
+gsockets.listen(1234);
+```
+
+###Client
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
@@ -66,6 +76,11 @@ Modify configuration settings of gsockets. The only option currently available i
 ####`gsockets.bind(io, socket)`
 
 Add the gsockets events to your socket.io server
+
+
+####`gsockets.listen(port)`
+
+Create a separate instance of socket.io especially to run gsockets.
 
 
 
