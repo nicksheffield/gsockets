@@ -1,6 +1,6 @@
 # Generic Socket Events
 
-A group of generic events for sending and receiving json objects through socket.io.
+A set of generic events for sending and receiving json objects through socket.io.
 
 Allows you to easily announce, broadcast and directly send data to other sockets, and also join/leave rooms through a basic client-side API.
 
@@ -25,7 +25,7 @@ app.use(gsockets.client);
 
 ```
 
-__Existing Socket.IO__
+_Using existing Socket.IO_
 
 ```javascript
 io.on('connect', function(socket){
@@ -33,7 +33,7 @@ io.on('connect', function(socket){
 });
 ```
 
-__Standalone__
+_Using standalone mode_
 
 ```javascript
 // choose whatever port number you want to use
