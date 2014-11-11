@@ -22,7 +22,6 @@ gsockets.config({ log: true});
 
 // express middleware to host the client.js file at /gsockets/client.js
 app.use(gsockets.client);
-
 ```
 
 _Using existing Socket.IO_
@@ -61,7 +60,7 @@ gsockets.listen(1234);
 
 ####`gsockets.client(req, res, next)`
 
-Serve the client.js file at the /gsockets/client.js url
+Serve the client.js file at the url `/gsockets/client.js`
 
  * usage: `app.use(gsockets.client);`
 
@@ -78,6 +77,7 @@ Modify configuration settings of gsockets. The only option currently available i
 ####`gsockets.bind(io, socket)`
 
 Add the gsockets events to your socket.io server
+
 
 
 ####`gsockets.listen(port)`
