@@ -1,6 +1,8 @@
-# General Sockets
+# Generic Socket Events
 
-A group of general events for sending and receiving json objects through socket.io
+A group of generic events for sending and receiving json objects through socket.io.
+
+Allows you to easily announce, broadcast and directly send data to other sockets, and also join/leave rooms through a basic client-side API.
 
 ##Setup
 
@@ -41,12 +43,12 @@ gsockets.listen(1234);
 ###Client
 
 ```html
-<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
 <script src="/gsockets/client.js"></script>
 <script>
 	gsockets.connect();
 
-	gsockets.announce('user_connected');
+	gsockets.broadcast('user_connected');
 
 	gsockets.on('user_connected', function(){
 		console.log('A user has connected');
@@ -67,9 +69,9 @@ Serve the client.js file at the /gsockets/client.js url
 
 ####`gsockets.config(obj)`
 
-Modify configuration settings of gsockets. The only option currently available is debug.
+Modify configuration settings of gsockets. The only option currently available is log.
 
- * usage: `gsockets.config({ debug: true});`
+ * usage: `gsockets.config({ log: true});`
 
 
 
@@ -88,12 +90,20 @@ Create a separate instance of socket.io especially to run gsockets.
 
 
 
-####`gsockets.connect(ip, port)`
+####`gsockets.connect([ip], [port])`
 
 Create the connection to the socket.io server
  
  * _ip_ (optional) The ip of the server if different from the current page
  * _port_ (optional) The port of the server
+
+
+
+####`gsockets.socket`
+
+The orginal socket.io object.
+
+ * usage: `var socketID = gsockets.socket.id;`
 
 
 
@@ -111,6 +121,14 @@ Send an ordinary socket.io event
 Run the callback when an event is emited from the server
 
  * _event_ The name of the event to listen for
+ * _callback_ The function to run when this event is fired
+
+
+
+####`gsockets.onDisconnect(callback)`
+
+Run the callback when a socket disconnects
+
  * _callback_ The function to run when this event is fired
 
 

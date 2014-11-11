@@ -17,6 +17,9 @@ var gsockets = {
 	on: function(event, callback){
 		this.socket.on(event, callback);
 	},
+	onDisconnect: function(callback){
+		this.socket.on('gsockets_disconnect', callback);
+	},
 	announce: function(event, data){
 		this.socket.emit('gsockets_announce', {'event': event, 'data': data})
 	},
