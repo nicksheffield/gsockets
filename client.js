@@ -11,9 +11,6 @@ var gsockets = {
 			console.log('gsockets id: ' + this.id);
 		});
 	},
-	emit: function(event, data){
-		this.socket.emit(event, data);
-	},
 	on: function(event, callback){
 		this.socket.on(event, callback);
 	},

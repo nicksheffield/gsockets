@@ -107,15 +107,6 @@ The orginal socket.io object.
 
 
 
-####`gsockets.emit(event, [data])`
-
-Send an ordinary socket.io event
-
- * _event_ The name of the event for the server to respond to
- * _data_ (optional) Data object
-
-
-
 ####`gsockets.on(event, callback)`
 
 Run the callback when an event is emited from the server

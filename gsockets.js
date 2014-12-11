@@ -33,14 +33,23 @@ module.exports = {
 		}
 	},
 	listen: function(port){
-		var io = require('socket.io')(),
-		gs = this;
+		var io     = require('socket.io')(),
+			colors = require('colors'),
+			gs     = this
 
 		io.on('connection', function(socket){
 			gs.bind(io, socket);
 		});
 
 		io.listen(port);
+
+		if(gs.log){
+			console.log('');
+			console.log(String('    gsockets server listening to port '+port).bold);
+			console.log('');
+		}else{
+			console.log('gsockets server listening to port '+port);
+		}
 	},
 	bind: function(io, socket){
 		socket.emit('connected', {socketID: socket.id});
@@ -48,25 +57,25 @@ module.exports = {
 		var gs     = this,
 			colors = require('colors')
 
-		if(gs.log) console.log(socket.id.white.bgBlack, '   connect'.black.bold);
+		if(gs.log) console.log('    '+socket.id.white.bgBlack, '   connect'.black.bold);
 
 		socket.on('disconnect', function(){
 			io.sockets.emit('gsockets_disconnect', {socketID: socket.id});
-			if(gs.log) console.log(socket.id.white.bgBlack, '   disconnect'.red)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   disconnect'.red)
 		})
 
 		socket.on('gsockets_announce', function(body){
 			io.sockets.emit(body.event, body.data);
-			if(gs.log) console.log(socket.id.white.bgBlack, '   announce        '.magenta, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   announce        '.magenta, body)
 		});
 
 		socket.on('gsockets_bounce', function(body){
 			socket.emit(body.event, body.data);
-			if(gs.log) console.log(socket.id.white.bgBlack, '   bounce          '.yellow, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   bounce          '.yellow, body)
 		});
 
 		socket.on('gsockets_send', function(body){
-			if(gs.log) console.log(socket.id.white.bgBlack, '   send            '.green, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   send            '.green, body)
 			if(body.socketID instanceof Array){
 				body.socketID.forEach(function(id){
 					io.to(id).emit(body.event, body.data);
@@ -77,28 +86,28 @@ module.exports = {
 		});
 
 		socket.on('gsockets_broadcast', function(body){
-			if(gs.log) console.log(socket.id.white.bgBlack, '   broadcast       '.blue, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   broadcast       '.blue, body)
 			socket.broadcast.emit(body.event, body.data);
 		});
 
 		socket.on('gsockets_roomAnnounce', function(body){
-			if(gs.log) console.log(socket.id.white.bgBlack, '   roomAnnounce    '.magenta, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   roomAnnounce    '.magenta, body)
 			io.sockets.in(body.roomName).emit(body.event, body.data);
 		});
 
 		socket.on('gsockets_roomBroadcast', function(body){
-			if(gs.log) console.log(socket.id.white.bgBlack, '   roomBroadcast   '.cyan, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   roomBroadcast   '.cyan, body)
 			socket.broadcast.to(body.roomName).emit(body.event, body.data);
 		});
 
 		socket.on('gsockets_join', function(body){
-			if(gs.log) console.log(socket.id.white.bgBlack, '   join            '.blue, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   join            '.blue, body)
 			socket.join(body.roomName);
 			socket.emit(body.event, {roomJoined: body.roomName});
 		});
 
 		socket.on('gsockets_leave', function(body){
-			if(gs.log) console.log(socket.id.white.bgBlack, '   leave           '.red, body)
+			if(gs.log) console.log('    '+socket.id.white.bgBlack, '   leave           '.red, body)
 			socket.leave(body.roomName);
 			socket.emit(body.event, {roomLeft: body.roomName});
 		});
