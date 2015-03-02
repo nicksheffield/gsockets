@@ -4,15 +4,15 @@ A set of generic events for sending and receiving json objects through socket.io
 
 Allows you to easily announce, broadcast and directly send data to other sockets, and also join/leave rooms through a basic client-side API.
 
-##Setup
+## Setup
 
-###NPM
+### NPM
 
 ```
 $ npm install gsockets
 ```
 
-###Server
+### Server
 
 ```javascript
 var gsockets = require('gsockets');
@@ -39,7 +39,7 @@ _Using standalone mode_
 gsockets.listen(1234);
 ```
 
-###Client
+### Client
 
 ```html
 <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
@@ -56,9 +56,9 @@ gsockets.listen(1234);
 ```
 
 
-##Server API
+## Server API
 
-####`gsockets.client(req, res, next)`
+#### `gsockets.client(req, res, next)`
 
 Serve the client.js file at the url `/gsockets/client.js`
 
@@ -66,7 +66,7 @@ Serve the client.js file at the url `/gsockets/client.js`
 
 
 
-####`gsockets.config(obj)`
+#### `gsockets.config(obj)`
 
 Modify configuration settings of gsockets. The only option currently available is log.
 
@@ -74,23 +74,23 @@ Modify configuration settings of gsockets. The only option currently available i
 
 
 
-####`gsockets.bind(io, socket)`
+#### `gsockets.bind(io, socket)`
 
 Add the gsockets events to your socket.io server
 
 
 
-####`gsockets.listen(port)`
+#### `gsockets.listen(port)`
 
 Create a separate instance of socket.io especially to run gsockets.
 
 
 
-##Client API
+## Client API
 
 
 
-####`gsockets.connect([ip], [port])`
+#### `gsockets.connect([ip], [port])`
 
 Create the connection to the socket.io server
  
@@ -99,7 +99,7 @@ Create the connection to the socket.io server
 
 
 
-####`gsockets.socket`
+#### `gsockets.socket`
 
 The orginal socket.io object.
 
@@ -107,7 +107,7 @@ The orginal socket.io object.
 
 
 
-####`gsockets.on(event, callback)`
+#### `gsockets.on(event, callback)`
 
 Run the callback when an event is emited from the server
 
@@ -116,7 +116,7 @@ Run the callback when an event is emited from the server
 
 
 
-####`gsockets.onDisconnect(callback)`
+#### `gsockets.onDisconnect(callback)`
 
 Run the callback when a socket disconnects
 
@@ -124,7 +124,7 @@ Run the callback when a socket disconnects
 
 
 
-####`gsockets.announce(event, [data])`
+#### `gsockets.announce(event, [data])`
 
 Emit event to all sockets
 
@@ -133,7 +133,7 @@ Emit event to all sockets
 
 
 
-####`gsockets.bounce(event, [data])`
+#### `gsockets.bounce(event, [data])`
 
 Emit event to this socket
 
@@ -142,7 +142,7 @@ Emit event to this socket
 
 
 
-####`gsockets.send(socketID, event, [data])`
+#### `gsockets.send(socketID, event, [data])`
 
 Emit event to specific socket
 
@@ -152,7 +152,7 @@ Emit event to specific socket
 
 
 
-####`gsockets.broadcast(event, [data])`
+#### `gsockets.broadcast(event, [data])`
 
 Emit event to every socket except this one
 
@@ -161,7 +161,7 @@ Emit event to every socket except this one
 
 
 
-####`gsockets.roomAnnounce(roomName, event, [data])`
+#### `gsockets.roomAnnounce(roomName, event, [data])`
 
 Emit event to room
 
@@ -171,7 +171,7 @@ Emit event to room
 
 
 
-####`gsockets.roomBroadcast(roomName, event, [data])`
+#### `gsockets.roomBroadcast(roomName, event, [data])`
 
 Emit event to everyone in room except you
 
@@ -181,7 +181,7 @@ Emit event to everyone in room except you
 
 
 
-####`gsockets.join(roomName, event)`
+#### `gsockets.join(roomName, event)`
 
 Join room and emit an event to this socket
 
@@ -190,7 +190,7 @@ Join room and emit an event to this socket
 
 
 
-####`gsockets.leave(roomName, event)`
+#### `gsockets.leave(roomName, event)`
 
 Leave room and emit an event to this socket
 
